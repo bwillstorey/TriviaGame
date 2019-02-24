@@ -1,3 +1,4 @@
+// Array of Objects containing questions, answer choices, and correct answers
 var questions = [ 
     {
     quest: "What is the name of the main character in 'The Big Lebowski'?",
@@ -58,8 +59,7 @@ $(document).ready(function(){
 
 })
 
-// Timer Function
-
+// TIMER
 // how much time per question 
 var counter = 15;
 
@@ -74,15 +74,13 @@ setInterval(function() {
     }
     }, 1000);
 
-// Starts the game
+
+// STARTS THE GAME
 function playGame () {
 
 // Remove start page content, add question page content
     $("#start-page").hide();
     $("#question-page").show();
-
-    // start timer
-
 
     // Load question 1
     for (var i = 0; i < questions.length; i++) {
@@ -97,21 +95,16 @@ function playGame () {
             $(".ans-btn").text(currentAnswers);
 
         }
-
-
-
-
-        // Remove page content, load answer page for q1 with image displayed
-        $(".ans-btn").on("click", function(){
-            $("#question-page").hide();
-            $("#answer-page").show();
-        })
     }    
 
 }
 
 
-
+// Remove page content, load answer page for q1 with image displayed
+$(".ans-btn").on("click", function(){
+    $("#question-page").hide();
+    $("#answer-page").show();
+})
 
 
 // Remove answer content, load q2
