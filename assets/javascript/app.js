@@ -40,8 +40,7 @@ var questions = [
     answer: "The Jesus"
     }
 ]
-console.log(questions[0]);
-
+console.log(questions[0].choices[0]);
 var images = ["../assets/images/coffee-can.gif", "../assets/images/donny.gif", "../assets/images/dude-dance.gif", "../assets/images/flea.gif", "../assets/images/jesus.gif", "../assets/images/larry.gif", "../assets/images/rug.gif", "../assets/images/sam-elliott.gif", "../assets/images/white-russian.gif"];
 
 var startButton = $("<button class ='start'>Let's Go Bowling</button>");
@@ -68,12 +67,17 @@ function playGame () {
 
     // Load question 1
     for (var i = 0; i < questions.length; i++) {
-        // var currentQuestion = questions.q1;
-        $("#question").text(questions.q[i]);
+        var currentQuestion = questions[i].quest;
+        $("#question").text(currentQuestion);
 
         // load answer options for q1
-        var currentAnswers = questions.a[i];
-        $("#answer-options").append(currentAnswers);
+        
+        // for (var x = 0; x < 4; x++) {
+            var currentAnswers = questions[i].choices;
+            $("<button class='ans-btn'></button>").text(currentAnswers);
+            // $("#answer-options").append(currentAnswers);
+
+        // }
     }
 
     
