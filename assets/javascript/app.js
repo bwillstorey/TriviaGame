@@ -16,47 +16,28 @@ var questions = [
     },
     {
     q4: "What really ties the room together?",
-    a4: {
-        a: "good lighting",
-        b: "a rug",
-        c: "a couch"
-        },
+    a4: ["good lighting", "a rug", "a couch"],
     answer4: "a rug"
     },
     {
     q5: "What is the name of the Dude and Walter's friend?",
-    a5: {
-        a: "Donny",
-        b: "Jackie",
-        c: "Arthur"
-        },
+    a5: ["Donny", "Jackie", "Arthur"],
     answer5: "Donny"
     },
     {
     q6: "What famous musician makes a cameo in the movie?",
-    a6: {
-        a: "Marky Mark",
-        b: "Dave Grohl",
-        c: "Flea"
-        },
+    a6: ["Marky Mark", "Dave Grohl", "Flea"],
     answer6: "Flea"
     },
     {
     q7: "Who do the Dude and Walter accuse of stealing the car?",
-    a7: {
-        a: "Johnny",
-        b: "Larry",
-        c: "Harry"
-        },
+    a7: ["Johnny", "Larry", "Harry"],
     answer7: "Larry"
     },
     {
     q8: "Who do you not mess with?",
-    a8: {
-        a: "Malibu Police",
-        b: "Smokey",
-        c: "The Jesus"
-        },
+    a8: ["Malibu Police", "Smokey", "The Jesus"],
+    answer8: "The Jesus"
     }
 ]
 console.log(questions[0]);
