@@ -1,43 +1,43 @@
 var questions = [ 
     {
-    q1: "What is the name of the main character in 'The Big Lebowski'?",
-    a1: ["The Man", "The Boss", "The Dude"],
-    answer1: "The Dude"
+    quest: "What is the name of the main character in 'The Big Lebowski'?",
+    choices: ["The Man", "The Boss", "The Dude"],
+    answer: "The Dude"
     },
     {
-    q2: "What is the Dude's favorite beverage?",
-    a2: ["White Russian", "Manhattan", "Mint Julep"],
-    answer2: "White Russian"
+    quest: "What is the Dude's favorite beverage?",
+    choices: ["White Russian", "Manhattan", "Mint Julep"],
+    answer: "White Russian"
     },
     {
-    q3: "Who narrates 'The Big Lebowski?",
-    a3: ["Morgan Freeman", "Sam Elliott", "Gary Busey"],
-    answer3: "Sam Elliott"
+    quest: "Who narrates 'The Big Lebowski?",
+    choices: ["Morgan Freeman", "Sam Elliott", "Gary Busey"],
+    answer: "Sam Elliott"
     },
     {
-    q4: "What really ties the room together?",
-    a4: ["good lighting", "a rug", "a couch"],
-    answer4: "a rug"
+    quest: "What really ties the room together?",
+    choices: ["good lighting", "a rug", "a couch"],
+    answer: "a rug"
     },
     {
-    q5: "What is the name of the Dude and Walter's friend?",
-    a5: ["Donny", "Jackie", "Arthur"],
-    answer5: "Donny"
+    quest: "What is the name of the Dude and Walter's friend?",
+    choices: ["Donny", "Jackie", "Arthur"],
+    answer: "Donny"
     },
     {
-    q6: "What famous musician makes a cameo in the movie?",
-    a6: ["Marky Mark", "Dave Grohl", "Flea"],
-    answer6: "Flea"
+    quest: "What famous musician makes a cameo in the movie?",
+    choices: ["Marky Mark", "Dave Grohl", "Flea"],
+    answer: "Flea"
     },
     {
-    q7: "Who do the Dude and Walter accuse of stealing the car?",
-    a7: ["Johnny", "Larry", "Harry"],
-    answer7: "Larry"
+    quest: "Who do the Dude and Walter accuse of stealing the car?",
+    choices: ["Johnny", "Larry", "Harry"],
+    answer: "Larry"
     },
     {
-    q8: "Who do you not mess with?",
-    a8: ["Malibu Police", "Smokey", "The Jesus"],
-    answer8: "The Jesus"
+    quest: "Who do you not mess with?",
+    choices: ["Malibu Police", "Smokey", "The Jesus"],
+    answer: "The Jesus"
     }
 ]
 console.log(questions[0]);
