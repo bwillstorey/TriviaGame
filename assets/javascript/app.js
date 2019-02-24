@@ -40,12 +40,13 @@ var questions = [
     answer: "The Jesus"
     }
 ]
+// array of gifs to be display on the answer pages
 var images = ["../assets/images/coffee-can.gif", "../assets/images/donny.gif", "../assets/images/dude-dance.gif", "../assets/images/flea.gif", "../assets/images/jesus.gif", "../assets/images/larry.gif", "../assets/images/rug.gif", "../assets/images/sam-elliott.gif", "../assets/images/white-russian.gif"];
+
+// a button to start the game
 var startButton = $("<button class ='start'>Let's Go Bowling</button>");
-var counter = 15;
-var interval = setInterval(function() { 
-    counter--;
-}, 1000);
+
+
 
 $(document).ready(function(){
 
@@ -57,6 +58,22 @@ $(document).ready(function(){
 
 })
 
+// Timer Function
+
+// how much time per question 
+var counter = 15;
+
+// countdown and display on page
+setInterval(function() {
+    counter--;
+    if (counter >= 0) {
+        $("#timer").text("Time Remaining: " + counter)
+    }
+    if (counter === 0) {
+        clearInterval(counter);
+    }
+    }, 1000);
+
 // Starts the game
 function playGame () {
 
@@ -65,7 +82,7 @@ function playGame () {
     $("#question-page").show();
 
     // start timer
-    $("#timer").text("Time Remaining: " + interval);
+
 
     // Load question 1
     for (var i = 0; i < questions.length; i++) {
