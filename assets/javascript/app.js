@@ -86,12 +86,9 @@ setInterval(function () {
     }
     }, 1000);
 
-// wait for user input or timeout
-answerChosen = $(this).text(answer[i]);
-
-
-// function userInput () {
-
+function timeout () {
+console.log(questions[0].choices[1]);
+}
 
 // STARTS THE GAME
 function playGame () {
@@ -111,23 +108,26 @@ function playGame () {
             var currentAnswers = questions[i].choices[x];
             $("#answer-options").append("<button class='ans-btn'></button>");
             $(".ans-btn").text(currentAnswers);
-
         }
+
+        setTimeout(setInterval, 1000 * 20);
+
+        // click listener for user answer
         $(".ans-btn").on("click", function(){
-            if (answerChosen === answer[i]) {
+            var correctAnswer 
+            var gifAnswer = questions[i].imgUrl;
+            answerChosen = $(this).text(questions[i].answer);
+
+            if (answerChosen === correctAnswer) {
                 showAnswer()
                 $("#yes-no").text("The Dude Abides");
-                $("#correct-answer").text(answer[i]);
-                $(".answer-image").attr("src", "")
+                $("#correct-answer").text(correctAnswer);
+                $(".answer-image").attr("src", gifAnswer);
             }
-            else if (answerChosen !== answer[i]) {
-                
+            else if (answerChosen !== correctAnswer) {
+
             }
-        
         })
-        setTimeout(1000 * 20);
-
-
         
     }    
 
@@ -139,10 +139,14 @@ function showAnswer () {
     $("#question-page").hide();
     $("#answer-page").show();
 
-    
+    setTimeout(1000 * 8);
+    playGame()
 }
 
-
+function showResults () {
+    $("#answer-page").hide();
+    $("#result-page").show();
+}
 // Remove answer content, load q2
 
 

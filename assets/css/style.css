@@ -24,6 +24,8 @@ button {
     margin: auto;
     border: 2px solid wheat;
     background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 ul {
