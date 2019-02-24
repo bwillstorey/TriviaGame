@@ -61,10 +61,10 @@ $(document).ready(function(){
 
 // TIMER
 // how much time per question 
-var counter = 15;
+var counter = 20;
 
 // countdown and display on page
-setInterval(function() {
+setInterval(function () {
     counter--;
     if (counter >= 0) {
         $("#timer").text("Time Remaining: " + counter)
@@ -74,6 +74,10 @@ setInterval(function() {
     }
     }, 1000);
 
+// TIMEOUT
+function timeout () {
+
+}
 
 // STARTS THE GAME
 function playGame () {
@@ -81,20 +85,23 @@ function playGame () {
 // Remove start page content, add question page content
     $("#start-page").hide();
     $("#question-page").show();
+    var pause = false;
 
-    // Load question 1
+    // Load question
     for (var i = 0; i < questions.length; i++) {
         var currentQuestion = questions[i].quest;
         $("#question").text(currentQuestion);
 
-        // load answer options for q1
-        
-        for (var x = 0; x < 4; x++) {
-            var currentAnswers = questions[i].choices[i];
+        // load answer options
+        for (var x = 0; x < 3; x++) {
+            var currentAnswers = questions[i].choices[x];
             $("#answer-options").append("<button class='ans-btn'></button>");
             $(".ans-btn").text(currentAnswers);
 
         }
+       
+        setTimeout(timeout, 1000 * counter);
+        
     }    
 
 }
