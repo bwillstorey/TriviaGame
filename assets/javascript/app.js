@@ -40,10 +40,12 @@ var questions = [
     answer: "The Jesus"
     }
 ]
-console.log(questions[0].choices[0]);
 var images = ["../assets/images/coffee-can.gif", "../assets/images/donny.gif", "../assets/images/dude-dance.gif", "../assets/images/flea.gif", "../assets/images/jesus.gif", "../assets/images/larry.gif", "../assets/images/rug.gif", "../assets/images/sam-elliott.gif", "../assets/images/white-russian.gif"];
-
 var startButton = $("<button class ='start'>Let's Go Bowling</button>");
+var counter = 15;
+var interval = setInterval(function() { 
+    counter--;
+}, 1000);
 
 $(document).ready(function(){
 
@@ -63,7 +65,7 @@ function playGame () {
     $("#question-page").show();
 
     // start timer
-    $("#timer").text()
+    $("#timer").text("Time Remaining: " + interval);
 
     // Load question 1
     for (var i = 0; i < questions.length; i++) {
@@ -72,27 +74,28 @@ function playGame () {
 
         // load answer options for q1
         
-        // for (var x = 0; x < 4; x++) {
-            var currentAnswers = questions[i].choices;
-            $("<button class='ans-btn'></button>").text(currentAnswers);
-            // $("#answer-options").append(currentAnswers);
+        for (var x = 0; x < 4; x++) {
+            var currentAnswers = questions[i].choices[i];
+            $("#answer-options").append("<button class='ans-btn'></button>");
+            $(".ans-btn").text(currentAnswers);
 
-        // }
-    }
-
-    
-    // answer options for q1 
-    
+        }
 
 
 
-    
+
+        // Remove page content, load answer page for q1 with image displayed
+        $(".ans-btn").on("click", function(){
+            $("#question-page").hide();
+            $("#answer-page").show();
+        })
+    }    
 
 }
 
 
 
-// Remove page content, load answer page for q1 with image displayed
+
 
 // Remove answer content, load q2
 
