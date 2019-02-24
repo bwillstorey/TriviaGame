@@ -29,13 +29,47 @@ var questions = [
     {
     q4: "What really ties the room together?",
         a4: {
-
+            a: "good lighting",
+            b: "a rug",
+            c: "a couch"
         },
+    answer4: "a rug"
     },
+    {
     q5: "What is the name of the Dude and Walter's friend?",
+        a5: {
+            a: "Donny",
+            b: "Jackie",
+            c: "Arthur"
+        },
+    answer5: "Donny"
+    },
+    {
     q6: "What famous musician makes a cameo in the movie?",
+        a6: {
+            a: "Marky Mark",
+            b: "Dave Grohl",
+            c: "Flea"
+        },
+    answer6: "Flea"
+    },
+    {
     q7: "Who do the Dude and Walter accuse of stealing the car?",
-    q8: "Who do you not mess with?"
+        a7: {
+            a: "Johnny",
+            b: "Larry",
+            c: "Harry"
+        },
+    answer7: "Larry"
+    },
+    {
+    q8: "Who do you not mess with?",
+        a8: {
+            a: "Malibu Police",
+            b: "Smokey",
+            c: "The Jesus"
+        },
+    }
 ]
 
 var images = ["../assets/images/coffee-can.gif", "../assets/images/donny.gif", "../assets/images/dude-dance.gif", "../assets/images/flea.gif", "../assets/images/jesus.gif", "../assets/images/larry.gif", "../assets/images/rug.gif", "../assets/images/sam-elliott.gif", "../assets/images/white-russian.gif"];
