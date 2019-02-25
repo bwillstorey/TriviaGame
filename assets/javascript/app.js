@@ -75,6 +75,7 @@ $(document).ready(function(){
 })
 
 // TIMER
+
 function countdown () {
     counter--;
     if (counter >= 0) {
@@ -88,7 +89,6 @@ function countdown () {
 
     setInterval(countdown, 1000);
 
-
 // STARTS THE GAME
 function playGame () {
 
@@ -98,12 +98,11 @@ function playGame () {
     $("#result-page").hide();
     $("#question-page").show();
 
-// ask question
 
-    $("#question").text(questions[1].quest);
-
+// ask question - have tried a for loop here but it cycles to the end of the array without stopping
+    $("#question").text(questions[0].quest);
     
-// show answer choices
+// show answer choices - same here, i cant get the loop to stop and check the answer
         $("#answer-option1").append("<button class='answer-btn1'>");
         $("#answer-option2").append("<button class='answer-btn2'>");
         $("#answer-option3").append("<button class='answer-btn3'>");
@@ -111,12 +110,11 @@ function playGame () {
         $(".answer-btn2").text(questions[0].choices[1]);
         $(".answer-btn3").text(questions[0].choices[2]);
 
+
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
         showAnswer();
-
     })
-
 
 }
 
