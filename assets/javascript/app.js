@@ -4,64 +4,65 @@ var questions = [
     quest: "What is the name of the main character in 'The Big Lebowski'?",
     choices: ["The Man", "The Boss", "The Dude"],
     answer: "The Dude",
-    imgUrl: "../images/dude-dance.gif"
+    imgUrl: "assets/images/dude-dance.gif"
     },
     {
     quest: "What is the Dude's favorite beverage?",
     choices: ["White Russian", "Manhattan", "Mint Julep"],
     answer: "White Russian",
-    imgUrl: "../images/white-russian.gif"
+    imgUrl: "assets/images/white-russian.gif"
     },
     {
     quest: "Who narrates 'The Big Lebowski?",
     choices: ["Morgan Freeman", "Sam Elliott", "Gary Busey"],
     answer: "Sam Elliott",
-    imgUrl: "../images/sam-elliott.gif"
+    imgUrl: "assets/images/sam-elliott.gif"
     },
     {
     quest: "What really ties the room together?",
     choices: ["good lighting", "a rug", "a couch"],
     answer: "a rug",
-    imgUrl: "../images/rug.gif"
+    imgUrl: "assets/images/rug.gif"
     },
     {
     quest: "What is the name of the Dude and Walter's friend?",
     choices: ["Donny", "Jackie", "Arthur"],
     answer: "Donny",
-    imgUrl: "../images/donny.gif"
+    imgUrl: "assets/images/donny.gif"
     },
     {
     quest: "What famous musician makes a cameo in the movie?",
     choices: ["Marky Mark", "Dave Grohl", "Flea"],
     answer: "Flea",
-    imgUrl: "../images/flea.gif"
+    imgUrl: "assets/images/flea.gif"
     },
     {
     quest: "Who do the Dude and Walter accuse of stealing the car?",
     choices: ["Johnny", "Larry", "Harry"],
     answer: "Larry",
-    imgUrl: "../images/larry.gif"
+    imgUrl: "assets/images/larry.gif"
     },
     {
     quest: "Who do you not mess with?",
     choices: ["Malibu Police", "Smokey", "The Jesus"],
     answer: "The Jesus",
-    imgUrl: "../images/jesus.gif"
+    imgUrl: "assets/images/jesus.gif"
     },
     {
     quest: "What does Walter use for Donny's urn?",
     choices: ["bucket", "coffee can", "carboard box"],
     answer: "coffee can",
-    imgUrl: "../images/coffee-can.gif"
+    imgUrl: "assets/images/coffee-can.gif"
     }
 ]
 
 var counter = 20;
 var startButton = $("<button class ='start'>Let's Go Bowling</button>");
 var answerChosen;
-var correctScore
-var incorrectScore
-var unansweredScore
+var correctAnswer;
+var correctScore;
+var incorrectScore;
+var unansweredScore;
 
 $(document).ready(function(){
 
@@ -98,7 +99,9 @@ function playGame () {
     $("#question-page").show();
 
 // ask question
-    $("#question").text(questions[0].quest);
+
+    $("#question").text(questions[1].quest);
+
     
 // show answer choices
         $("#answer-option1").append("<button class='answer-btn1'>");
@@ -111,35 +114,42 @@ function playGame () {
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
         showAnswer();
+
     })
+
+
 }
-    
-
-    //                 $(".answer-image").attr("src", gifAnswer);
-
-    
-
 
 // move to answer page
 function showAnswer () {
     $("#question-page").hide();
     $("#answer-page").show();
 
-    var correctAnswer = questions[0].answer;
-    answerChosen = $(this).text(questions[0].choices[0]);
-    console.log(this);
+    correctAnswer = questions[0].answer;
+    answerChosen = questions[0].choices[2];
+    gifAnswer = questions[0].imgUrl;
 
-    if (answerChosen == correctAnswer) {
+
+    console.log(correctAnswer);
+    console.log(answerChosen);
+
+    if (answerChosen === correctAnswer) {
         correctScore++;
         $("#yes-no").text("Correct. The Dude Abides.");
+        $("#correct-answer").text("Answer: " + correctAnswer);
+        $(".answer-image").attr("src", gifAnswer);
     }
-    if (answerChosen != correctAnswer) {
+    else if (answerChosen !== correctAnswer) {
         incorrectScore++;
         $("#yes-no").text("Incorrect. That's just your opinion, man.");
+        $("#correct-answer").text("Answer: " + correctAnswer);
+        $(".answer-image").attr("src", gifAnswer);
     }
     else {
         unansweredScore++;
         $("#yes-no").text("Are you awake man?");
+        $("#correct-answer").text("Answer: " + correctAnswer);
+        $(".answer-image").attr("src", gifAnswer);
     }
 
     function resetGame () {
@@ -147,6 +157,9 @@ function showAnswer () {
         $("#answer-option1").empty();
         $("#answer-option2").empty();
         $("#answer-option3").empty();
+        $("#yes-no").empty();
+        correctAnswer;
+        answerChosen;
         clearInterval(counter);
         counter = 20;
         playGame();
