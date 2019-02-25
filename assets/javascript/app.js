@@ -78,15 +78,14 @@ function countdown () {
     counter--;
     if (counter >= 0) {
         $("#timer").text("Time Remaining: " + counter)
-
     }
     if (counter === 0) {
         clearInterval(counter);
-
+        showAnswer();
     }
     }
 
-setInterval(countdown, 1000);
+    setInterval(countdown, 1000);
 
 
 // STARTS THE GAME
@@ -94,8 +93,9 @@ function playGame () {
 
 // Remove start page content, add question page content
     $("#start-page").hide();
+    $("#answer-page").hide();
+    $("#result-page").hide();
     $("#question-page").show();
-
 
 // ask question
     $("#question").text(questions[0].quest);
@@ -110,43 +110,14 @@ function playGame () {
 
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
-        var correctAnswer = questions[0].answer;
-        answerChosen = $(this).text(questions[0].choices[0]);
-
-        if (answerChosen === correctAnswer) {
-            correctScore++;
-
-        }
-        if (answerChosen !== correctAnswer) {
-            incorrectScore++;
-        }
-        else {
-            unansweredScore++
-        }
-
+        showAnswer();
     })
 }
     
-    //     // click listener for user answer
-    //     function checkAnswer() {
-    //         $("button").on("click", function(){
-    //             var correctAnswer = questions[i].answer
-    //             answerChosen = $(this).text(questions[i].answer);
-    
-    //             if (answerChosen === correctAnswer) {
-    //                 showAnswer()
-    //                 $("#yes-no").text("The Dude Abides");
-    //                 $("#correct-answer").text(correctAnswer);
+
     //                 $(".answer-image").attr("src", gifAnswer);
-    //             }
-    //             else if (answerChosen !== correctAnswer) {
+
     
-    //             }
-    //         })
-    //     }
-        
-        
-    // }    
 
 
 // move to answer page
@@ -154,10 +125,38 @@ function showAnswer () {
     $("#question-page").hide();
     $("#answer-page").show();
 
-    setTimeout(1000 * 8);
+    var correctAnswer = questions[0].answer;
+    answerChosen = $(this).text(questions[0].choices[0]);
+    console.log(this);
+
+    if (answerChosen == correctAnswer) {
+        correctScore++;
+        $("#yes-no").text("Correct. The Dude Abides.");
+    }
+    if (answerChosen != correctAnswer) {
+        incorrectScore++;
+        $("#yes-no").text("Incorrect. That's just your opinion, man.");
+    }
+    else {
+        unansweredScore++;
+        $("#yes-no").text("Are you awake man?");
+    }
+
+    function resetGame () {
+        $("#question").empty();
+        $("#answer-option1").empty();
+        $("#answer-option2").empty();
+        $("#answer-option3").empty();
+        clearInterval(counter);
+        counter = 20;
+        playGame();
+    }
+
+    setTimeout(resetGame, 1000 * 5);
+    
 }
 
-// TBD
+// function to display final score
 function showResults () {
     $("#answer-page").hide();
     $("#result-page").show();
@@ -172,10 +171,7 @@ function showResults () {
     $(".reset-btn").on("click", function() {
         playGame();
     })
-
-
 }
-// Remove answer content, load q2
 
 
 
