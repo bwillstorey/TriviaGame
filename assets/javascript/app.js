@@ -59,6 +59,9 @@ var questions = [
 var counter = 20;
 var startButton = $("<button class ='start'>Let's Go Bowling</button>");
 var answerChosen;
+var correctScore
+var incorrectScore
+var unansweredScore
 
 $(document).ready(function(){
 
@@ -106,34 +109,28 @@ function playGame () {
         $(".answer-btn3").text(questions[0].choices[2]);
 
 // click event listener
-    $("button").on("click", function(){
-        
+    $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
+        var correctAnswer = questions[0].answer;
+        answerChosen = $(this).text(questions[0].choices[0]);
+
+        if (answerChosen === correctAnswer) {
+            correctScore++;
+
+        }
+        if (answerChosen !== correctAnswer) {
+            incorrectScore++;
+        }
+        else {
+            unansweredScore++
+        }
+
     })
 }
-    // // Load question
-    // for (var i = 0; i < questions.length; i++) {
-    //     var currentQuestion = questions[i].quest;
-    //     $("#question").text(currentQuestion);
-    //     console.log(currentQuestion);
-    //     console.log (questions.length);
-
-
-    //     // load answer options
-    //     for (var x = 0; x < 3; x++) {
-    //         var currentAnswers = questions[i].choices[x];
-    //         $("#answer-options").append("<button class='ans-btn'></button>");
-    //         $(".ans-btn").text(currentAnswers);
-    //     }
-    //     if (counter >= 0) {
-            
-    //     }
-        
-
+    
     //     // click listener for user answer
     //     function checkAnswer() {
     //         $("button").on("click", function(){
     //             var correctAnswer = questions[i].answer
-    //             var gifAnswer = questions[i].imgUrl;
     //             answerChosen = $(this).text(questions[i].answer);
     
     //             if (answerChosen === correctAnswer) {
@@ -158,13 +155,25 @@ function showAnswer () {
     $("#answer-page").show();
 
     setTimeout(1000 * 8);
-    i++;
-    playGame()
 }
 
+// TBD
 function showResults () {
     $("#answer-page").hide();
     $("#result-page").show();
+
+    $("#correct").text("Correct Answers: " + correctScore);
+    $("#incorrect").text("Incorrect Answers: " + incorrectScore);
+    $("#unanswered").text("Unanswered Questions: " + unansweredScore);
+
+    $("#reset").append("<button class='reset-btn'>")
+    $(".reset-btn").text("Start Over?");
+
+    $(".reset-btn").on("click", function() {
+        playGame();
+    })
+
+
 }
 // Remove answer content, load q2
 
