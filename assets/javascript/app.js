@@ -56,9 +56,8 @@ var questions = [
     }
 ]
 
-// a button to start the game
+var counter = 20;
 var startButton = $("<button class ='start'>Let's Go Bowling</button>");
-
 var answerChosen;
 
 $(document).ready(function(){
@@ -72,23 +71,20 @@ $(document).ready(function(){
 })
 
 // TIMER
-// how much time per question 
-var counter = 20;
-
-// countdown and display on page
-setInterval(function () {
+function countdown () {
     counter--;
     if (counter >= 0) {
         $("#timer").text("Time Remaining: " + counter)
+
     }
     if (counter === 0) {
         clearInterval(counter);
-    }
-    }, 1000);
 
-function timeout () {
-console.log(questions[0].choices[1]);
-}
+    }
+    }
+
+setInterval(countdown, 1000);
+
 
 // STARTS THE GAME
 function playGame () {
@@ -96,42 +92,64 @@ function playGame () {
 // Remove start page content, add question page content
     $("#start-page").hide();
     $("#question-page").show();
-    var pause = false;
 
-    // Load question
-    for (var i = 0; i < questions.length; i++) {
-        var currentQuestion = questions[i].quest;
-        $("#question").text(currentQuestion);
 
-        // load answer options
-        for (var x = 0; x < 3; x++) {
-            var currentAnswers = questions[i].choices[x];
-            $("#answer-options").append("<button class='ans-btn'></button>");
-            $(".ans-btn").text(currentAnswers);
-        }
+// ask question
+    $("#question").text(questions[0].quest);
+    
+// show answer choices
+        $("#answer-option1").append("<button class='answer-btn1'>");
+        $("#answer-option2").append("<button class='answer-btn2'>");
+        $("#answer-option3").append("<button class='answer-btn3'>");
+        $(".answer-btn1").text(questions[0].choices[0]);
+        $(".answer-btn2").text(questions[0].choices[1]);
+        $(".answer-btn3").text(questions[0].choices[2]);
 
-        setTimeout(setInterval, 1000 * 20);
-
-        // click listener for user answer
-        $(".ans-btn").on("click", function(){
-            var correctAnswer 
-            var gifAnswer = questions[i].imgUrl;
-            answerChosen = $(this).text(questions[i].answer);
-
-            if (answerChosen === correctAnswer) {
-                showAnswer()
-                $("#yes-no").text("The Dude Abides");
-                $("#correct-answer").text(correctAnswer);
-                $(".answer-image").attr("src", gifAnswer);
-            }
-            else if (answerChosen !== correctAnswer) {
-
-            }
-        })
+// click event listener
+    $("button").on("click", function(){
         
-    }    
-
+    })
 }
+    // // Load question
+    // for (var i = 0; i < questions.length; i++) {
+    //     var currentQuestion = questions[i].quest;
+    //     $("#question").text(currentQuestion);
+    //     console.log(currentQuestion);
+    //     console.log (questions.length);
+
+
+    //     // load answer options
+    //     for (var x = 0; x < 3; x++) {
+    //         var currentAnswers = questions[i].choices[x];
+    //         $("#answer-options").append("<button class='ans-btn'></button>");
+    //         $(".ans-btn").text(currentAnswers);
+    //     }
+    //     if (counter >= 0) {
+            
+    //     }
+        
+
+    //     // click listener for user answer
+    //     function checkAnswer() {
+    //         $("button").on("click", function(){
+    //             var correctAnswer = questions[i].answer
+    //             var gifAnswer = questions[i].imgUrl;
+    //             answerChosen = $(this).text(questions[i].answer);
+    
+    //             if (answerChosen === correctAnswer) {
+    //                 showAnswer()
+    //                 $("#yes-no").text("The Dude Abides");
+    //                 $("#correct-answer").text(correctAnswer);
+    //                 $(".answer-image").attr("src", gifAnswer);
+    //             }
+    //             else if (answerChosen !== correctAnswer) {
+    
+    //             }
+    //         })
+    //     }
+        
+        
+    // }    
 
 
 // move to answer page
@@ -140,6 +158,7 @@ function showAnswer () {
     $("#answer-page").show();
 
     setTimeout(1000 * 8);
+    i++;
     playGame()
 }
 
