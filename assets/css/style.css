@@ -3,7 +3,9 @@
     max-width: 60%;
     text-align: center;
     background-color: #b76f16;
-    
+    border: outset 4px wheat;
+    font-family: fantasy;
+    font-style: oblique;
 }
 
 #content::after {
@@ -19,8 +21,36 @@
     z-index: -1;   
 }
 
+@keyframes bground {
+    0%   {background-color: wheat;}
+    25%  {background-color: indigo;}
+    50%  {background-color: azure;}
+    100% {background-color: goldenrod;}
+  }
+
+@keyframes buttonColor {
+    0%   {background-color: rosybrown;}
+    25%  {background-color: cornflowerblue;}
+    50%  {background-color: firebrick;}
+    100% {background-color: wheat;}
+  }
+
 h1 {
     padding: 20px;
+    background-color: wheat;
+    display: inline-block;
+    animation-name: bground;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
 }
 
 .start {
@@ -35,10 +65,21 @@ h1 {
 button {
     display: block;
     margin: auto;
+    font-size: 20px;
     border: 2px solid wheat;
     background-color: #ffffff;
     padding: 10px;
     margin-bottom: 10px;
+    animation-name: buttonColor;
+    animation-duration: 45s;
+    animation-iteration-count: infinite;
+}
+
+button:hover {
+    background-color: wheat;
+    color: green;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 p {
