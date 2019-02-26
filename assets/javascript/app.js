@@ -80,6 +80,8 @@ $(document).ready(function(){
 
 })
 
+
+
 // STARTS THE GAME
 function playGame () {
 
@@ -93,19 +95,23 @@ function playGame () {
     $("#question-page").show();
 
 // TIMER
+
+var timer = setInterval(countdown, 1000);
+
 function countdown () {
     counter--;
     if (counter >= 0) {
         $("#timer").text("Time Remaining: " + counter)
     }
     if (counter === 0) {
-        clearInterval(counter);
+        // clearInterval();
         showAnswer();
     }
     }
+// clearInterval();
+// counter = 15;
 
-setInterval(countdown, 1000);
-
+    
 
 // ask question as long as all questions have not been asked
     if (i >= 9) {
@@ -126,6 +132,7 @@ setInterval(countdown, 1000);
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
         answerChosen = $(this).text();
+        clearInterval(counter);
         console.log(answerChosen);
         showAnswer();
         
@@ -174,8 +181,6 @@ function resetGame () {
     $("#yes-no").empty();
     // correctAnswer;
     answerChosen = undefined;
-    clearInterval(counter);
-    counter = 15;
     i++;
     playGame();
 }
@@ -199,8 +204,7 @@ function showResults () {
     $("#incorrect").text("Incorrect Answers: " + incorrectScore);
     $("#unanswered").text("Unanswered Questions: " + unansweredScore);
 
-    $("#reset").append("<button class='reset-btn'>")
-    $(".reset-btn").text("Start Over?").on("click", function() {
+    $("#reset").append("<button class='reset-btn'>").text("Start Over?").on("click", function() {
         newGame();
     })
 }

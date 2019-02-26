@@ -32,4 +32,9 @@ button {
 
 ul {
     list-style-type: none;
+    text-align: center;
+}
+
+img {
+    max-width: 80%;
 }
