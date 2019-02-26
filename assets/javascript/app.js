@@ -64,6 +64,7 @@ var correctScore = 0;
 var incorrectScore = 0;
 var unansweredScore = 0;
 var i = 0;
+var timeout;
 
 var qOne = questions.indexOf();
 
@@ -128,7 +129,7 @@ function countdown () {
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
         answerChosen = $(this).text();
-        clearInterval(counter);
+        clearInterval(timer);
         console.log(answerChosen);
         showAnswer();
         
@@ -165,7 +166,7 @@ function showAnswer () {
         $(".answer-image").attr("src", gifAnswer);
     }
 
-    setTimeout(resetGame, 1000 * 5);
+    timeout = setTimeout(resetGame, 1000 * 5);
 }
 
 // function to reset game between rounds
@@ -198,11 +199,16 @@ function showResults () {
     $("#question-page").hide();
     $("#result-page").show();
 
+    counter = 0;
+    clearInterval(timer);
+    clearInterval(timeout);
+
     $("#correct").text("Correct Answers: " + correctScore);
     $("#incorrect").text("Incorrect Answers: " + incorrectScore);
     $("#unanswered").text("Unanswered Questions: " + unansweredScore);
 
-    $("#reset").append("<button class='reset-btn'>").text("Start Over?").on("click", function() {
+    $("#reset").append("<button class='reset-btn'>");
+    $(".reset-btn").text("Start Over?").on("click", function() {
         newGame();
     })
 }

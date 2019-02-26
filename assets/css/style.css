@@ -20,7 +20,12 @@
 }
 .start {
     margin-bottom: 20px;
+    padding: 20px;
 }
+#start-page {
+    height: 80%;
+}
+
 button {
     display: block;
     margin: auto;
@@ -37,4 +42,5 @@ ul {
 
 img {
     max-width: 80%;
+    margin-bottom: 20px;
 }
