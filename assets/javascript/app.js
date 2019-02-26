@@ -120,7 +120,7 @@ function playGame () {
 
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
-        answerChosen = $(this).text()
+        answerChosen = $(this).text();
         console.log(answerChosen);
         showAnswer();
         
@@ -133,10 +133,8 @@ function showAnswer () {
     $("#question-page").hide();
     $("#answer-page").show();
 
-        correctAnswer = questions[i].answer;
-        // answerChosen = 
-        gifAnswer = questions[i].imgUrl;
-
+    correctAnswer = questions[i].answer;
+    gifAnswer = questions[i].imgUrl;
 
     console.log(correctAnswer);
     console.log(answerChosen);
@@ -194,11 +192,3 @@ function showResults () {
         playGame();
     })
 }
-
-
-
-
-
-
-
-
