@@ -18,10 +18,16 @@
     position: absolute;
     z-index: -1;   
 }
+
+h1 {
+    padding: 20px;
+}
+
 .start {
     margin-bottom: 20px;
     padding: 20px;
 }
+
 #start-page {
     height: 80%;
 }
@@ -35,8 +41,7 @@ button {
     margin-bottom: 10px;
 }
 
-ul {
-    list-style-type: none;
+p {
     text-align: center;
 }
 

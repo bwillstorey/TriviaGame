@@ -112,6 +112,9 @@ function countdown () {
 
 // ask question as long as all questions have not been asked
     if (i >= 9) {
+        // counter = 0;
+        clearInterval(timer);
+        clearInterval(timeout);
         showResults();
     }
     else {
@@ -189,6 +192,7 @@ function newGame () {
     correctScore = 0;
     incorrectScore = 0;
     unansweredScore = 0;
+    $("#reset").empty();
     i = -1;
     resetGame();
 }
@@ -198,10 +202,6 @@ function showResults () {
     $("#answer-page").hide();
     $("#question-page").hide();
     $("#result-page").show();
-
-    counter = 0;
-    clearInterval(timer);
-    clearInterval(timeout);
 
     $("#correct").text("Correct Answers: " + correctScore);
     $("#incorrect").text("Incorrect Answers: " + incorrectScore);
