@@ -101,17 +101,13 @@ var timer = setInterval(countdown, 1000);
 function countdown () {
     counter--;
     if (counter >= 0) {
-        $("#timer").text("Time Remaining: " + counter)
+        $("#timer").text("Time Remaining: " + counter);
     }
     if (counter === 0) {
-        // clearInterval();
+        clearInterval(timer);
         showAnswer();
     }
     }
-// clearInterval();
-// counter = 15;
-
-    
 
 // ask question as long as all questions have not been asked
     if (i >= 9) {
@@ -181,6 +177,8 @@ function resetGame () {
     $("#yes-no").empty();
     // correctAnswer;
     answerChosen = undefined;
+    clearInterval(timer);
+    counter = 15;
     i++;
     playGame();
 }
