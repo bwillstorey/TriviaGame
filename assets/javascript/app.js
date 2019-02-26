@@ -20,8 +20,8 @@ var questions = [
     },
     {
     quest: "What really ties the room together?",
-    choices: ["good lighting", "a rug", "a couch"],
-    answer: "a rug",
+    choices: ["Good Lighting", "A Rug", "A Couch"],
+    answer: "A Rug",
     imgUrl: "assets/images/rug.gif"
     },
     {
@@ -50,19 +50,19 @@ var questions = [
     },
     {
     quest: "What does Walter use for Donny's urn?",
-    choices: ["bucket", "coffee can", "carboard box"],
-    answer: "coffee can",
+    choices: ["Bucket", "Coffee Can", "Carboard Box"],
+    answer: "Coffee Can",
     imgUrl: "assets/images/coffee-can.gif"
     }
 ]
 
-var counter = 20;
+var counter = 15;
 var startButton = $("<button class ='start'>Let's Go Bowling</button>");
 var answerChosen;
 var correctAnswer;
-var correctScore;
-var incorrectScore;
-var unansweredScore;
+var correctScore = 0;
+var incorrectScore = 0;
+var unansweredScore = 0;
 var i = 0;
 
 var qOne = questions.indexOf();
@@ -73,12 +73,26 @@ $(document).ready(function(){
     $("#question-page").hide();
     $("#answer-page").hide();
     $("#result-page").hide();
-    $(document).on("click", ".start", playGame);
+    $(".start").on("click", function () {
+        // setInterval(countdown, 1000);
+        playGame();
+    })
 
 })
 
-// TIMER
+// STARTS THE GAME
+function playGame () {
 
+    console.log(answerChosen);
+    console.log(i);
+
+// Remove start page content, add question page content
+    $("#start-page").hide();
+    $("#answer-page").hide();
+    $("#result-page").hide();
+    $("#question-page").show();
+
+// TIMER
 function countdown () {
     counter--;
     if (counter >= 0) {
@@ -90,34 +104,25 @@ function countdown () {
     }
     }
 
-    setInterval(countdown, 1000);
+setInterval(countdown, 1000);
 
-// STARTS THE GAME
-function playGame () {
 
-    if (i === 8) {
+// ask question as long as all questions have not been asked
+    if (i >= 9) {
         showResults();
     }
+    else {
+        $("#question").text(questions[i].quest);
+    }
 
-// Remove start page content, add question page content
-    $("#start-page").hide();
-    $("#answer-page").hide();
-    $("#result-page").hide();
-    $("#question-page").show();
-
-
-// ask question - have tried a for loop here but it cycles to the end of the array without stopping
-    $("#question").text(questions[i].quest);
-    
-// show answer choices - same here, i cant get the loop to stop and check the answer
+// show answer choices
         $("#answer-option1").append("<button class='answer-btn1'>");
         $("#answer-option2").append("<button class='answer-btn2'>");
         $("#answer-option3").append("<button class='answer-btn3'>");
         $(".answer-btn1").text(questions[i].choices[0]);
         $(".answer-btn2").text(questions[i].choices[1]);
         $(".answer-btn3").text(questions[i].choices[2]);
-
-
+    
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
         answerChosen = $(this).text();
@@ -125,7 +130,6 @@ function playGame () {
         showAnswer();
         
     })
-
 }
 
 // move to answer page
@@ -145,40 +149,50 @@ function showAnswer () {
         $("#correct-answer").text("Answer: " + correctAnswer);
         $(".answer-image").attr("src", gifAnswer);
     }
+    else if (answerChosen === undefined) {
+        unansweredScore++;
+        $("#yes-no").text("Are you awake man?");
+        $("#correct-answer").text("Answer: " + correctAnswer);
+        $(".answer-image").attr("src", gifAnswer);
+    }
     else if (answerChosen !== correctAnswer) {
         incorrectScore++;
         $("#yes-no").text("Incorrect. That's just your opinion, man.");
         $("#correct-answer").text("Answer: " + correctAnswer);
         $(".answer-image").attr("src", gifAnswer);
     }
-    else {
-        unansweredScore++;
-        $("#yes-no").text("Are you awake man?");
-        $("#correct-answer").text("Answer: " + correctAnswer);
-        $(".answer-image").attr("src", gifAnswer);
-    }
-
-    function resetGame () {
-        $("#question").empty();
-        $("#answer-option1").empty();
-        $("#answer-option2").empty();
-        $("#answer-option3").empty();
-        $("#yes-no").empty();
-        correctAnswer;
-        answerChosen;
-        clearInterval(counter);
-        counter = 20;
-        i++;
-        playGame();
-    }
 
     setTimeout(resetGame, 1000 * 5);
+}
 
+// function to reset game between rounds
+function resetGame () {
+    $("#question").empty();
+    $("#answer-option1").empty();
+    $("#answer-option2").empty();
+    $("#answer-option3").empty();
+    $("#yes-no").empty();
+    // correctAnswer;
+    answerChosen = undefined;
+    clearInterval(counter);
+    counter = 15;
+    i++;
+    playGame();
+}
+
+// function to start the game over
+function newGame () {
+    correctScore = 0;
+    incorrectScore = 0;
+    unansweredScore = 0;
+    i = -1;
+    resetGame();
 }
 
 // function to display final score
 function showResults () {
     $("#answer-page").hide();
+    $("#question-page").hide();
     $("#result-page").show();
 
     $("#correct").text("Correct Answers: " + correctScore);
@@ -186,9 +200,7 @@ function showResults () {
     $("#unanswered").text("Unanswered Questions: " + unansweredScore);
 
     $("#reset").append("<button class='reset-btn'>")
-    $(".reset-btn").text("Start Over?");
-
-    $(".reset-btn").on("click", function() {
-        playGame();
+    $(".reset-btn").text("Start Over?").on("click", function() {
+        newGame();
     })
 }

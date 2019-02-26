@@ -18,7 +18,9 @@
     position: absolute;
     z-index: -1;   
 }
-
+.start {
+    margin-bottom: 20px;
+}
 button {
     display: block;
     margin: auto;
