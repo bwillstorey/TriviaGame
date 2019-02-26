@@ -63,6 +63,9 @@ var correctAnswer;
 var correctScore;
 var incorrectScore;
 var unansweredScore;
+var i = 0;
+
+var qOne = questions.indexOf();
 
 $(document).ready(function(){
 
@@ -92,6 +95,10 @@ function countdown () {
 // STARTS THE GAME
 function playGame () {
 
+    if (i === 8) {
+        showResults();
+    }
+
 // Remove start page content, add question page content
     $("#start-page").hide();
     $("#answer-page").hide();
@@ -100,20 +107,23 @@ function playGame () {
 
 
 // ask question - have tried a for loop here but it cycles to the end of the array without stopping
-    $("#question").text(questions[0].quest);
+    $("#question").text(questions[i].quest);
     
 // show answer choices - same here, i cant get the loop to stop and check the answer
         $("#answer-option1").append("<button class='answer-btn1'>");
         $("#answer-option2").append("<button class='answer-btn2'>");
         $("#answer-option3").append("<button class='answer-btn3'>");
-        $(".answer-btn1").text(questions[0].choices[0]);
-        $(".answer-btn2").text(questions[0].choices[1]);
-        $(".answer-btn3").text(questions[0].choices[2]);
+        $(".answer-btn1").text(questions[i].choices[0]);
+        $(".answer-btn2").text(questions[i].choices[1]);
+        $(".answer-btn3").text(questions[i].choices[2]);
 
 
 // click event listener
     $(".answer-btn1, .answer-btn2, .answer-btn3").on("click", function(){
+        answerChosen = $(this).text()
+        console.log(answerChosen);
         showAnswer();
+        
     })
 
 }
@@ -123,9 +133,9 @@ function showAnswer () {
     $("#question-page").hide();
     $("#answer-page").show();
 
-    correctAnswer = questions[0].answer;
-    answerChosen = questions[0].choices[2];
-    gifAnswer = questions[0].imgUrl;
+        correctAnswer = questions[i].answer;
+        // answerChosen = 
+        gifAnswer = questions[i].imgUrl;
 
 
     console.log(correctAnswer);
@@ -160,11 +170,12 @@ function showAnswer () {
         answerChosen;
         clearInterval(counter);
         counter = 20;
+        i++;
         playGame();
     }
 
     setTimeout(resetGame, 1000 * 5);
-    
+
 }
 
 // function to display final score
